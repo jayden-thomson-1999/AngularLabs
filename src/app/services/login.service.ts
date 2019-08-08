@@ -27,7 +27,7 @@ export class LoginService {
     this.http.post<Post>(this.url, {email, password}).subscribe(
         res => {
           if (res.ok) {
-            sessionStorage.setItem(res.user.username, JSON.stringify(res.user));
+            sessionStorage.setItem('user', JSON.stringify(res.user));
           }
         },
         (err: HttpErrorResponse) => {

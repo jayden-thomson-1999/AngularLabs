@@ -7,8 +7,12 @@
       <li class="nav-item active">
         <a class="nav-link" routerLink="/account">Account</a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/profile">Profile</a>
+      </li>
     </ul>
   </div>
+  <button (click)="logout()" class="btn btn-dark navbar-btn float-right">Logout</button>
 </nav>
 
 <router-outlet></router-outlet>
