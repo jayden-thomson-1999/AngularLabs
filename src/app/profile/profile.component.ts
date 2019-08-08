@@ -21,4 +21,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() { }
 
+  public submitChanges() {
+    sessionStorage.setItem('user', this.user);
+  }
+
 }
