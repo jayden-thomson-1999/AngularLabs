@@ -1,22 +1,28 @@
 <h1>Profile</h1>
 
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">Username</span>
-  </div>
-  <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-</div>
+<ng-container *ngIf = "isLogedIn">
+  <form>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Username</span>
+      </div>
+      <input type="text" class="form-control" value={{user.username}} aria-label="Username" aria-describedby="basic-addon1">
+    </div>
 
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">Email</span>
-  </div>
-  <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-</div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Email</span>
+      </div>
+      <input type="text" class="form-control" value={{user.email}} aria-label="Username" aria-describedby="basic-addon1">
+    </div>
 
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">Birth Date</span>
-  </div>
-  <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-</div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Birth Date</span>
+      </div>
+      <input type="text" class="form-control" value={{user.birthdate}} aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+
+    <button (click)="submitChanges()" type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</ng-container>

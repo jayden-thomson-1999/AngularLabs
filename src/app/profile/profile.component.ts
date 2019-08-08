@@ -7,11 +7,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  private isLogedIn: boolean;
+  private user;
 
   constructor(private router: Router ) {
-    const user = sessionStorage.getItem('user');
-    if (user === null) {
+    this.user = JSON.parse(sessionStorage.getItem('user'));
+    if (this.user === null) {
       this.router.navigateByUrl('/login');
+    } else {
+      this.isLogedIn = true;
     }
   }
 
