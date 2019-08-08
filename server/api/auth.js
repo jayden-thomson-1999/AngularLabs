@@ -10,13 +10,13 @@ var users = [
 ]
 
 module.exports = function(req, res) {
-    let username = req.body.username;
+    let email = req.body.email;
     let password = req.body.password;
     let success = false;
     let tempObj;
     
     users.forEach(user => {
-        if(user.username === username && user.password === password) {
+        if(user.email === email && user.password === password) {
             user.valid = true;
             success = true
             tempObj = JSON.parse(JSON.stringify(user));
