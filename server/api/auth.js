@@ -1,21 +1,25 @@
 /* eslint-disable no-console */
-class User {
-    constructor(username, birthdate, age, email, password, valid) {
-        this.username = username;   //string
-        this.birthdate = birthdate; //string
-        this.age = age;             //number
-        this.email = email;         //string
-        this.password = password;   //string
-        this.valid = valid;         //boolean
-    }
-}
 
 var users = [
-    User("johndoe", "1/1/2000", '18', 'johndoe@domain.com', 'qwerty', true), 
-    User("janedoe", "19/10/2000", '18', 'janedoe@domain.com', 'password', true), 
-    User("bobhawke", "11/03/1929", '89', 'hawkey@domain.com', 'labor', false)
+    {username:"johndoe", birthdate:"1/1/2000", age:'18', 
+        email:'johndoe@domain.com', password:'qwerty', valid: false},        
+    {username:"janedoe", birthdate:"19/10/2000", age:'18', 
+        email:'janedoe@domain.com', password:'password', valid:false}, 
+    {username:"bobhawke", birthdate:"11/03/1929", age:'89', 
+        email:'hawkey@domain.com', password:'labor', valid:false}
 ]
 
 module.exports = function(req, res) {
-    console.log("auth api accessed");
+    let username = req.body.username;
+    let password = req.body.password;
+    let valid = false    
+    
+    users.forEach(user => {
+        if(user.username === username && user.password === password) {
+            user.valid = true;
+            valid = true
+        }
+    });
+
+    res.json({ok: valid});
 }

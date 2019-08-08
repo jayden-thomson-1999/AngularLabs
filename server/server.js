@@ -3,6 +3,8 @@ const express = require('express'); // used for routing
 const app = express(); //init express
 const http = require('http').Server(app); //used to provide http functionality
 const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 
@@ -12,4 +14,4 @@ let server = http.listen(3000, function() {
     console.log(`Server listening on ${host} port: ${port}`);
 });
 
-app.post('/auth', require('./api/auth'));
+app.post('/auth', require(__dirname + '/api/auth'));
