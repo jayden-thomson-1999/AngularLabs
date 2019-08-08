@@ -10,3 +10,5 @@ let server = http.listen(3000, function() {
     let port = server.address().port;
     console.log(`Server listening on ${host} port: ${port}`);
 });
+
+app.post('/auth', require('/api/auth'));
