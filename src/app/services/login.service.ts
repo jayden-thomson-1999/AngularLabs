@@ -2,15 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+interface User {
+  username: string;
+  birthdate: string;
+  age: number;
+  email: string;
+  valid: boolean;
+}
+
 interface Post {
   ok: boolean;
-  user: {
-    username: string,
-    birthdate: string,
-    age: number,
-    email: string,
-    valid: boolean
-  };
+  user: User;
 }
 
 @Injectable({
@@ -22,10 +24,11 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   public login(email: string, password: string) {
-
     this.http.post<Post>(this.url, {email, password}).subscribe(
         res => {
-          console.log(res);
+          if (res.ok) {
+            sessionStorage.setItem(res.user.username, JSON.stringify(res.user));
+          }
         },
         (err: HttpErrorResponse) => {
           console.log(err.error);
