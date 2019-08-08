@@ -12,14 +12,21 @@ var users = [
 module.exports = function(req, res) {
     let username = req.body.username;
     let password = req.body.password;
-    let valid = false    
+    let success = false;
+    let tempObj;
     
     users.forEach(user => {
         if(user.username === username && user.password === password) {
             user.valid = true;
-            valid = true
+            success = true
+            tempObj = JSON.parse(JSON.stringify(user));
+            delete tempObj.password;
         }
     });
 
-    res.json({ok: valid});
+    if(success) {
+        res.json({ok: true, user: tempObj})
+    } else {
+        res.json({ok: false});
+    }
 }
